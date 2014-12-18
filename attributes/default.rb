@@ -1,0 +1,2 @@
+
+default['shellchecker']['user'] = 'vagrant'
