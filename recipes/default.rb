@@ -8,7 +8,7 @@ home = Etc.getpwnam(user).dir
 
 package "cabal-install"
 
-include_recipe 'cabal'
+include_recipe 'cabal::default'
 
 cabal_update user
 
