@@ -10,8 +10,6 @@ package "cabal-install"
 
 include_recipe 'cabal::default'
 
-cabal_update user
-
 cabal_install "shellcheck" do
   github "koalaman/shellcheck"
   user user
