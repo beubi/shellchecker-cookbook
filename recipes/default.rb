@@ -3,17 +3,21 @@
 # Recipe:: default
 #
 
-user = node['shellchecker']['user']
-home = Etc.getpwnam(user).dir
+unless ::File.exists?("/usr/bin/shellcheck")
 
-package "cabal-install"
+  user = node['shellchecker']['user']
+  home = Etc.getpwnam(user).dir
 
-include_recipe 'cabal::default'
+  package "cabal-install"
 
-cabal_install "shellcheck" do
-  github "koalaman/shellcheck"
-  user user
-  cabal_update true
-  install_binary :from => "#{home}/.cabal/bin/shellcheck", :to => '/usr/bin/shellcheck'
+  include_recipe 'cabal::default'
+
+  cabal_install "shellcheck" do
+    github "koalaman/shellcheck"
+    user user
+    cabal_update true
+    install_binary :from => "#{home}/.cabal/bin/shellcheck", :to => '/usr/bin/shellcheck'
+  end
+
 end
 
