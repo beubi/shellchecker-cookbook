@@ -11,9 +11,9 @@ unless ::File.exists?("/usr/bin/shellcheck")
 
   cabal_install "shellcheck" do
     github "koalaman/shellcheck"
-    user node['shellchecker']['user']
+    user Etc.getpwuid(Process.uid).name
     cabal_update true
-    install_binary :from => "#{node['shellchecker']['home']}/.cabal/bin/shellcheck", :to => '/usr/bin/shellcheck'
+    global_install true
   end
 
 end
