@@ -5,18 +5,15 @@
 
 unless ::File.exists?("/usr/bin/shellcheck")
 
-  user = node['shellchecker']['user']
-  home = Etc.getpwnam(user).dir
-
   package "cabal-install"
 
   include_recipe 'cabal::default'
 
   cabal_install "shellcheck" do
     github "koalaman/shellcheck"
-    user user
+    user node['shellchecker']['user']
     cabal_update true
-    install_binary :from => "#{home}/.cabal/bin/shellcheck", :to => '/usr/bin/shellcheck'
+    install_binary :from => "#{node['shellchecker']['home']}/.cabal/bin/shellcheck", :to => '/usr/bin/shellcheck'
   end
 
 end
