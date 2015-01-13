@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 
-unless ::File.exists?("/usr/bin/shellcheck")
+unless ::File.exists?("/usr/local/bin/shellcheck")
 
   package "cabal-install"
 
